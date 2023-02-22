@@ -1,11 +1,9 @@
-import "./ProductCard.css";
-
 //cambios en className test
-const ProductCard = ({ title, price = 0, isRed }) => {
+const ProductCard = (props) => {
   return (
     <div>
-      <h1 className={isRed}> {title} </h1>
-      <h2> {price} </h2>
+      <h1> {props.title} </h1>
+      <h2> {props.price} </h2>
     </div>
   );
 };
