@@ -1,9 +1,9 @@
 //cambios en className test
-const ProductCard = (props) => {
+const ProductCard = ({ title, price }) => {
   return (
     <div>
-      <h1> {props.title} </h1>
-      <h2> {props.price} </h2>
+      <h1 style={{ color: "navy" }}> {title} </h1>
+      <h2 style={{ color: "orange" }}> {price} </h2>
     </div>
   );
 };
