@@ -1,8 +1,15 @@
-
+import styles from "../Footer/Footer.Styles.css"
 
 const Footer = () => {
   return (
-    <div>Footer</div>
+    <div className="footer" >
+      <h1 className="Welcome">
+        Welcome to the Future
+      </h1>
+      
+      
+      
+      </div>
   )
 }
 

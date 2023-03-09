@@ -1,10 +1,15 @@
 import { BsFillCartCheckFill } from "react-icons/bs";
-const CartWidget = () => {
+import "../CartWidget/CartWidget.css";
+import { Link } from "react-router-dom";
+
+const CartWidget = ({ number }) => {
   return (
-    <div className="GrupCart">
-      <span className="NumberCart">0</span>
-      <BsFillCartCheckFill color="white" size={30} />
-    </div>
+    <Link to="/cart" style={{ textDecoration: "none" }}>
+      <div className="GrupCart">
+        <span className="NumberCart">0</span>
+        <BsFillCartCheckFill color="white" size={30} />
+      </div>
+    </Link>
   );
 };
 

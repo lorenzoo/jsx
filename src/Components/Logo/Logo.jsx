@@ -1,14 +1,17 @@
 import imagenLogo from "../../images/logoGreat.jpg";
+import { Link } from "react-router-dom";
 
 const Logo = () => {
   return (
-    <div>
-      <img
-        src={imagenLogo}
-        alt="logo"
-        style={{ width: "20vw", padding: "0.5rem", borderRadius: "10%" }}
-      />
-    </div>
+    <Link to="/">
+      <div>
+        <img
+          src={imagenLogo}
+          alt="logoGreatTomorrow"
+          style={{ width: "20vw", padding: "0.5rem", borderRadius: "10%" }}
+        />
+      </div>
+    </Link>
   );
 };
 
