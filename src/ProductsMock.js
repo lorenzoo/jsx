@@ -39,4 +39,44 @@ export const products = [
     img:
       'https://res.cloudinary.com/dl1sh8s84/image/upload/v1678215199/test_1_hp1ul4.jpg',
   },
+  {
+    id: 5,
+    stock: 6,
+    title: 'HOLY PIZZA',
+    price: 34,
+    description: 'Sudadera algodon 100%',
+    category: 'Sudaderas',
+    img:
+      'https://res.cloudinary.com/dl1sh8s84/image/upload/v1678530903/sudadera_1_dwysty.jpg',
+  },
+  {
+    id: 6,
+    stock: 6,
+    title: 'PIXEL FOX',
+    price: 34,
+    description: 'Sudadera algodon 100%',
+    category: 'Sudaderas',
+    img:
+      'https://res.cloudinary.com/dl1sh8s84/image/upload/v1678530903/sudadera_2_mwzhcn.jpg',
+  },
+  {
+    id: 7,
+    stock: 6,
+    title: 'GREAT ',
+    price: 34,
+    description: 'Sudadera algodon 100%',
+    category: 'Sudaderas',
+    img:
+      'https://res.cloudinary.com/dl1sh8s84/image/upload/v1678530903/sudadera_4_nsrd6i.jpg',
+  },
+  {
+    id: 8,
+    stock: 6,
+    title: 'GREAT',
+    price: 34,
+    description: 'Sudadera algodon 100%',
+    category: 'Sudaderas',
+    img:
+      'https://res.cloudinary.com/dl1sh8s84/image/upload/v1678530903/sudadera_3_oa3fzq.jpg',
+  },
 ]
