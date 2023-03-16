@@ -1,17 +1,31 @@
 // import { display, flexbox } from "@mui/system";
-import React from "react";
+import React, { useContext }  from "react";
 import { useParams } from "react-router-dom";
+import { CartContext } from "../../Context/CartContext";
 import { products } from "../../ProductsMock";
 import Contadores from "../Contadores/Contadores";
 // import styles from "../ItemDetailContainer/ItemDetailContainer.css"
 
+
 const ItemDetailContainer = () => {
   const { id } = useParams();
+
+  const { agregarCarrito } = useContext( CartContext )
 
   const productSelec = products.find((element) => element.id === Number(id));
 
   const onAdd = (cantidad) => {
-    console.log(`se agrego al carrito ${cantidad} producto`);
+
+let producto = {
+
+ ...productSelec, 
+  cantidad: cantidad 
+
+
+}
+
+    agregarCarrito ( producto )
+    
   };
 
   return (
