@@ -1,0 +1,7 @@
+.botonesMasMenos {
+  align-items:flex-end;
+  justify-content: flex-start;
+  background-color: rgb(222, 20, 20);
+  min-width: 23vw;
+  margin-bottom: 0.5rem;
+}
