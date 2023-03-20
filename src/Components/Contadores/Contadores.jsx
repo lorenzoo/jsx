@@ -1,8 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "../Contadores/Contadores.css";
 
 const Contadores = ({ stock, initial = 1, onAdd }) => {
   const [contador, setContador] = useState(initial);
+
+  useEffect(() => {
+    setContador(initial);
+  }, [initial]);
 
   const sumar = () => {
     if (contador < stock) {
@@ -17,7 +21,7 @@ const Contadores = ({ stock, initial = 1, onAdd }) => {
   };
 
   return (
-    <div>
+    <div style={{ minWidth: "40%" }}>
       <h3 style={{ color: "red" }}>{contador} Cantidad Seleccionada</h3>
       <ul className="botonesMasMenos">
         <li>
@@ -27,6 +31,7 @@ const Contadores = ({ stock, initial = 1, onAdd }) => {
             className="botonContador"
             class="favorite styled"
             type="button"
+            style={{ color: "white", textShadow: "none" }}
           >
             +
           </button>
@@ -38,17 +43,18 @@ const Contadores = ({ stock, initial = 1, onAdd }) => {
             className="botonContador"
             class="favorite styled"
             type="button"
+            style={{ color: "white", textShadow: "none" }}
           >
             -
           </button>
         </li>
         <li>
           <button
-            onClick={()=> onAdd(contador)}
+            onClick={() => onAdd(contador)}
             className="botonContador"
             class="favorite styled"
             type="button"
-            style={{color:"white" , textShadow:"none"}}
+            style={{ color: "white", textShadow: "none" }}
           >
             Añadir al Carrtio
           </button>

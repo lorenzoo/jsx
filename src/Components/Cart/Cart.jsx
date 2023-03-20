@@ -2,13 +2,14 @@ import React, { useContext } from "react";
 import { CartContext } from "../../Context/CartContext";
 
 const Cart = () => {
-  const { cart, limpiarCart, getPrecioTotal } = useContext(CartContext);
+  const { cart, limpiarCart, getPrecioTotal, deleteProductById } = useContext(CartContext);
   const precioTotal = getPrecioTotal();
   return (
     <div
       style={{
         display: "flex",
         flexDirection: "row",
+        
         alignItems: "center",
       }}
     >
@@ -16,8 +17,10 @@ const Cart = () => {
         return (
           <div
             style={{
-              alignItems: "center",
-              justifyContent: "space-around",
+              display:"flex",
+              flexDirection:"column",
+              alignItems:"flex-start",
+              justifyContent:"space-between",
               padding: "0.5rem",
             }}
             key={element.id}
@@ -31,8 +34,12 @@ const Cart = () => {
 
             <h3>{element.description}</h3>
 
-            <h3>{element.price}€</h3>
-            <h3>Cantidad {element.cantidad}</h3>
+            <h4>Precio {element.price}€</h4>
+            <h4>Cantidad {element.cantidad}</h4>
+
+            <button class="favorite styled"
+            type="button"
+            style={{color:"white" , textShadow:"none"}} onClick={()=>deleteProductById(element.id)} >Eliminar</button>
           </div>
         );
       })}

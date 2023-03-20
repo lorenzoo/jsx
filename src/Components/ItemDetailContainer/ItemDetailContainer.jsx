@@ -10,7 +10,7 @@ import Contadores from "../Contadores/Contadores";
 const ItemDetailContainer = () => {
   const { id } = useParams();
 
-  const { agregarCarrito } = useContext( CartContext )
+  const { agregarCarrito, getQuantityById } = useContext( CartContext )
 
   const productSelec = products.find((element) => element.id === Number(id));
 
@@ -28,11 +28,14 @@ let producto = {
     
   };
 
+  let cantidad = getQuantityById( Number(id))
+
+
   return (
     <div
       style={{
         display: "flex",
-        alignContent: "center",
+       
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
@@ -41,8 +44,8 @@ let producto = {
       <h1>{productSelec.title}</h1>
       <img src={productSelec.img} style={{ height: "40%", width: "40%" }} />
       <h3>{productSelec.description}</h3>
-      <h3>{productSelec.price}€</h3>
-      <Contadores stock={productSelec.stock} onAdd={onAdd} />
+      <h3>Precio {productSelec.price}€</h3>
+      <Contadores stock={productSelec.stock} onAdd={onAdd} initial={cantidad}/>
     </div>
   );
 };
