@@ -1,41 +1,42 @@
 // import { display, flexbox } from "@mui/system";
-import React, { useContext }  from "react";
+import React, { useContext } from "react";
 import { useParams } from "react-router-dom";
 import { CartContext } from "../../Context/CartContext";
 import { products } from "../../ProductsMock";
 import Contadores from "../Contadores/Contadores";
-// import styles from "../ItemDetailContainer/ItemDetailContainer.css"
-
+import Swal from "sweetalert2";
 
 const ItemDetailContainer = () => {
   const { id } = useParams();
 
-  const { agregarCarrito, getQuantityById } = useContext( CartContext )
+  const { agregarCarrito, getQuantityById } = useContext(CartContext);
 
   const productSelec = products.find((element) => element.id === Number(id));
 
   const onAdd = (cantidad) => {
+    let producto = {
+      ...productSelec,
+      cantidad: cantidad,
+    };
 
-let producto = {
+    agregarCarrito(producto);
 
- ...productSelec, 
-  cantidad: cantidad 
-
-
-}
-
-    agregarCarrito ( producto )
-    
+    Swal.fire({
+      position: "center",
+      icon: "success",
+      title: "Añadido al carrito",
+      showConfirmButton: false,
+      timer: 1500,
+    });
   };
 
-  let cantidad = getQuantityById( Number(id))
-
+  let cantidad = getQuantityById(Number(id));
 
   return (
     <div
       style={{
         display: "flex",
-       
+
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
@@ -45,7 +46,7 @@ let producto = {
       <img src={productSelec.img} style={{ height: "40%", width: "40%" }} />
       <h3>{productSelec.description}</h3>
       <h3>Precio {productSelec.price}€</h3>
-      <Contadores stock={productSelec.stock} onAdd={onAdd} initial={cantidad}/>
+      <Contadores stock={productSelec.stock} onAdd={onAdd} initial={cantidad} />
     </div>
   );
 };

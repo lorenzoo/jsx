@@ -1,11 +1,48 @@
 import React, { useContext } from "react";
 import { CartContext } from "../../Context/CartContext";
+import Swal from 'sweetalert2'
+
 
 const Cart = () => {
+  
   const { cart, limpiarCart, getPrecioTotal, deleteProductById } =
     useContext(CartContext);
+
   const precioTotal = getPrecioTotal();
+ 
+  const clear = ()=>{
+
+    Swal.fire({
+      title: 'Vaciar el carrtio?',
+      text: "Esta seguro?!",
+      icon: 'warning',
+      showCancelButton: true,
+      showDenyButton: true,
+      confirmButtonColor: '#11CBCF',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'SI, vaciarlo!',
+      showDenyButtonText: `No vaciar`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          'Vaciado!',
+          'Tu carrito ha sido vaciado',
+          'success'
+        )
+        limpiarCart()
+      }else if (result.isDenied)
+       {Swal.fire('El carrito queda guardado','','success') 
+
+
+
+}  
+ })
+
+    
+  }
+
   return (
+    
     <div
       style={{
         display: "flex",
@@ -48,50 +85,58 @@ const Cart = () => {
           </div>
         );
       })}
+      
       <div
         style={{
           display: "flex",
           flexDirection: "column",
           minWidth: "12%",
+          //backgroundColor: "green",
+          //justifyContent: "flex-end",
+          alignItems: "flex-end",
+          paddingRight: "0.5rem",
+          minHeight: "50vh",
           justifyContent: "flex-end",
         }}
       >
-        <h3 style={{ padding: "0.5rem" }}>
-          {" "}
-          Precio total de tu compra {precioTotal}€
-        </h3>
-        <div
-          style={{
-            padding: "0.1rem",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
-            justifyContent: "flex-end",
-          }}
-        >
-          <button
-            onClick
-            class="favorite styled"
-            type="button"
+        {cart.length < 1 && (
+          <h2 style={{ paddingLeft: "0.5rem" }}>Tu carrito esta vacio</h2>
+        )}
+
+        <h3 style={{ padding: "0.5rem" }}> Precio total: {precioTotal}€</h3>
+        {cart.length > 0 && (
+          <div
             style={{
-              color: "white",
-              textShadow: "none",
-              height: "20%",
-              marginBottom: "0.2rem",
+              padding: "0.1rem",
+              display: "flex",
+              flexDirection: "column",
+
+              alignItems: "flex-end",
             }}
           >
-            Comprar
-          </button>
-          <button
-            onClick={limpiarCart}
-            class="favorite styled"
-            type="button"
-            style={{ color: "white", textShadow: "none", height: "20%" }}
-          >
-            Limpiar Carrito
-          </button>
-        </div>
+            <button
+              onClick
+              class="favorite styled"
+              type="button"
+              style={{
+                color: "white",
+                textShadow: "none",
+                height: "20%",
+                marginBottom: "0.2rem",
+              }}
+            >
+              Comprar
+            </button>
+            <button
+              onClick={()=>clear()}
+              class="favorite styled"
+              type="button"
+              style={{ color: "white", textShadow: "none", height: "20%" }}
+            >
+              Vaciar Carrito
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
