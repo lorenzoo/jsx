@@ -31,7 +31,7 @@ getDoc(ref)
 
 },[id])
 
-  // const productSelec = products.find((element) => element.id === Number(id));
+
 
   const onAdd = (cantidad) => {
     let producto = {
