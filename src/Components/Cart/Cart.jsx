@@ -1,48 +1,35 @@
 import React, { useContext } from "react";
 import { CartContext } from "../../Context/CartContext";
-import Swal from 'sweetalert2'
-
+import Swal from "sweetalert2";
 
 const Cart = () => {
-  
   const { cart, limpiarCart, getPrecioTotal, deleteProductById } =
     useContext(CartContext);
 
   const precioTotal = getPrecioTotal();
- 
-  const clear = ()=>{
 
+  const clear = () => {
     Swal.fire({
-      title: 'Vaciar el carrtio?',
+      title: "Vaciar el carrtio?",
       text: "Esta seguro?!",
-      icon: 'warning',
+      icon: "warning",
       showCancelButton: true,
       showDenyButton: true,
-      confirmButtonColor: '#11CBCF',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'SI, vaciarlo!',
+      confirmButtonColor: "#11CBCF",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "SI, vaciarlo!",
       showDenyButtonText: `No vaciar`,
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire(
-          'Vaciado!',
-          'Tu carrito ha sido vaciado',
-          'success'
-        )
-        limpiarCart()
-      }else if (result.isDenied)
-       {Swal.fire('El carrito queda guardado','','success') 
-
-
-
-}  
- })
-
-    
-  }
+        Swal.fire("Vaciado!", "Tu carrito ha sido vaciado", "success");
+        limpiarCart();
+      } else if (result.isDenied) {
+        Swal.fire("El carrito queda guardado", "", "success");
+      }
+    });
+  };
 
   return (
-    
     <div
       style={{
         display: "flex",
@@ -85,14 +72,13 @@ const Cart = () => {
           </div>
         );
       })}
-      
+
       <div
         style={{
           display: "flex",
           flexDirection: "column",
           minWidth: "12%",
-          //backgroundColor: "green",
-          //justifyContent: "flex-end",
+
           alignItems: "flex-end",
           paddingRight: "0.5rem",
           minHeight: "50vh",
@@ -100,7 +86,19 @@ const Cart = () => {
         }}
       >
         {cart.length < 1 && (
-          <h2 style={{ paddingLeft: "0.5rem" }}>Tu carrito esta vacio</h2>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "flex-end",
+              paddingLeft: "10rem",
+            }}
+          >
+            <h2 style={{ paddingLeft: "0.5rem" }}>Tu carrito esta vacio</h2>
+            <img
+              src="https://res.cloudinary.com/dl1sh8s84/image/upload/v1679837014/empty_cart_ejrtiq.png"
+              alt=""
+            ></img>
+          </div>
         )}
 
         <h3 style={{ padding: "0.5rem" }}> Precio total: {precioTotal}€</h3>
@@ -128,7 +126,7 @@ const Cart = () => {
               Comprar
             </button>
             <button
-              onClick={()=>clear()}
+              onClick={() => clear()}
               class="favorite styled"
               type="button"
               style={{ color: "white", textShadow: "none", height: "20%" }}
