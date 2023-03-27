@@ -3,10 +3,11 @@ import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { CartContext } from "../../Context/CartContext";
 //import { products } from "../../ProductsMock";
-import Contadores from "../Contadores/Contadores";
+
 import Swal from "sweetalert2";
 import {getDoc, collection, doc} from "firebase/firestore"
 import { db } from "../../FirebaseConfig";
+import ItemDetail from "../ItemDetail/ItemDetail";
 
 
 
@@ -53,21 +54,7 @@ getDoc(ref)
   let cantidad = getQuantityById(Number(id));
 
   return (
-    <div
-      style={{
-        display: "flex",
-
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <h1>{productSelec.title}</h1>
-      <img src={productSelec.img} style={{ height: "40%", width: "40%" }} alt=""/>
-      <h3>{productSelec.description}</h3>
-      <h3>Precio {productSelec.price}€</h3>
-      <Contadores stock={productSelec.stock} onAdd={onAdd} initial={cantidad} />
-    </div>
+    <ItemDetail productSelec={productSelec} onAdd={onAdd} cantidad={cantidad} />
   );
 };
 
