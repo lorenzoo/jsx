@@ -83,18 +83,7 @@ const FormCheckOut = ({ cart, getPrecioTotal, setOrderId, limpiarCart }) => {
         </button>
       </form>
 
-      <button
-        className="favorite styled"
-        type="button"
-        style={{
-          color: "white",
-          textShadow: "none",
-          margin: "0.3rem",
-          backgroundColor: "grey",
-        }}
-      >
-        Cancelar
-      </button>
+      
     </div>
   );
 };
