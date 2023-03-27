@@ -3,7 +3,7 @@ import { useState } from "react";
 import { addDoc, collection } from "firebase/firestore";
 import { db } from "../../FirebaseConfig";
 
-const FormCheckOut = ({ cart, getPrecioTotal, setOrderId }) => {
+const FormCheckOut = ({ cart, getPrecioTotal, setOrderId, limpiarCart }) => {
   const [userData, setUserData] = useState({
     name: "",
     email: "",
@@ -22,7 +22,11 @@ const FormCheckOut = ({ cart, getPrecioTotal, setOrderId }) => {
 
     const ordersCollection = collection(db, "orders");
     addDoc(ordersCollection, order)
-      .then((res) => setOrderId(res.id))
+      .then((res) => {
+        
+        setOrderId(res.id)
+        limpiarCart()
+      })
       .catch((err) => console.log(err));
   };
 
