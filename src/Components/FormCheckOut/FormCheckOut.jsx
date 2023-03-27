@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, collection, updateDoc, doc } from "firebase/firestore";
 import { db } from "../../FirebaseConfig";
 
 const FormCheckOut = ({ cart, getPrecioTotal, setOrderId, limpiarCart }) => {
@@ -23,18 +23,28 @@ const FormCheckOut = ({ cart, getPrecioTotal, setOrderId, limpiarCart }) => {
     const ordersCollection = collection(db, "orders");
     addDoc(ordersCollection, order)
       .then((res) => {
-        
-        setOrderId(res.id)
-        limpiarCart()
+        setOrderId(res.id);
+        limpiarCart();
       })
       .catch((err) => console.log(err));
+
+    cart.map((product) => {
+      let refDoc = doc(db, "products", product.id);
+      updateDoc(refDoc, { stock: product.stock - product.cantidad });
+    });
   };
 
   return (
     <div
-      style={{ display: "flex", flexDirection: "column", alignItems: "center", minHeight:"60vh", justifyContent:"center" }}
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        minHeight: "60vh",
+        justifyContent: "center",
+      }}
     >
-      <h1 style={{paddingBottom:"0.5rem"}}>Check Out</h1>
+      <h1 style={{ paddingBottom: "0.5rem" }}>Check Out</h1>
       <form
         onSubmit={handleSubmit}
         style={{
@@ -65,8 +75,6 @@ const FormCheckOut = ({ cart, getPrecioTotal, setOrderId, limpiarCart }) => {
           style={{ fontSize: "larger", padding: "0.5rem" }}
         />
         <button
-          
-
           className="favorite styled"
           type="submit"
           style={{ color: "white", textShadow: "none", margin: "0.3rem" }}
