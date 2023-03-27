@@ -61,7 +61,7 @@ const FormCheckOut = ({ cart, getPrecioTotal, setOrderId }) => {
           style={{ fontSize: "larger", padding: "0.5rem" }}
         />
         <button
-          // onSubmit={handleSubmit}
+          
 
           className="favorite styled"
           type="submit"
