@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./Item.Style.css";
-import Contadores from "../Contadores/Contadores";
+//import Contadores from "../Contadores/Contadores";
 import { Link } from "react-router-dom";
 
 const Item = ({ element }) => {
@@ -12,7 +12,7 @@ const Item = ({ element }) => {
       <h3> {element.price}€</h3>
 
       <Link to={`/item/${element.id}`}>
-        <button className="botonContador" class="favorite styled" type="button">
+        <button className="favorite styled" type="button">
           <h4
             className="DetalleProducto"
             style={{ color: "white", textShadow: "none" }}

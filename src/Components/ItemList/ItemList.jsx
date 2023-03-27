@@ -11,14 +11,14 @@ const ItemList = ({ items }) => {
         flexFlow:"wrap",
         width: "100%",
         alignItems: "center",
-        justifyContent: "center",
+        //justifyContent: "center",
         justifyContent:"space-evenly",
         padding: "0.3%",
       }}
     >
       {items.map((element) => {
         return (
-          <div>
+          <div >
             <Item key={element.id} element={element} />
           </div>
         );

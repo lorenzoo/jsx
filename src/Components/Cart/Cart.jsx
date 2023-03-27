@@ -1,10 +1,17 @@
 import React, { useContext } from "react";
 import { CartContext } from "../../Context/CartContext";
 import Swal from "sweetalert2";
+import { useState } from "react";
+import FormCheckOut from "../FormCheckOut/FormCheckOut";
+
+
 
 const Cart = () => {
   const { cart, limpiarCart, getPrecioTotal, deleteProductById } =
     useContext(CartContext);
+
+    const [showForm, setShowForm] = useState(false);
+    const [orderId, setOrderId] = useState ( null) 
 
   const precioTotal = getPrecioTotal();
 
@@ -29,8 +36,27 @@ const Cart = () => {
     });
   };
 
+
+if(orderId) {
+
   return (
-    <div
+  <div style={{display:"flex", flexDirection:"column", justifyContent:"center", alignItems:"center", minHeight:"60vh", justifyContent:"space-evenly"}}>
+    <h2>Gracias por su Compra</h2>
+    <h4>Su numero de pedido es: {orderId}</h4>
+    <button
+    className="favorite styled"
+    type="button"
+    style={{ color: "white", textShadow: "none" }}
+    >
+      Seguir Comprando</button>
+    </div>
+  )
+}
+  return (
+   <div >
+    {
+      !showForm ? (
+        <div
       style={{
         display: "flex",
         flexDirection: "row",
@@ -62,7 +88,7 @@ const Cart = () => {
             <h4>Cantidad {element.cantidad}</h4>
 
             <button
-              class="favorite styled"
+              className="favorite styled"
               type="button"
               style={{ color: "white", textShadow: "none" }}
               onClick={() => deleteProductById(element.id)}
@@ -113,8 +139,8 @@ const Cart = () => {
             }}
           >
             <button
-              onClick
-              class="favorite styled"
+              onClick={()=> setShowForm(true)}
+              className="favorite styled"
               type="button"
               style={{
                 color: "white",
@@ -127,16 +153,26 @@ const Cart = () => {
             </button>
             <button
               onClick={() => clear()}
-              class="favorite styled"
+              className="favorite styled"
               type="button"
               style={{ color: "white", textShadow: "none", height: "20%" }}
             >
               Vaciar Carrito
             </button>
-          </div>
+          </div> 
         )}
+        
       </div>
-    </div>
+      
+     </div> 
+     ) : ( 
+     <FormCheckOut cart={cart} getPrecioTotal={getPrecioTotal} setOrderId={setOrderId} />
+  
+    )}
+    
+    
+     </div>
+    
   );
 };
 
