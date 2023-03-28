@@ -47,8 +47,8 @@ const Cart = () => {
           justifyContent: "space-evenly",
         }}
       >
-        <h2>Gracias por su Compra</h2>
-        <h4>Su numero de pedido es: {orderId} </h4>
+        <h2>Su numero de pedido es:</h2>
+        <h4> {orderId} </h4>
         <Link to="/">
           <button
             className="favorite styled"

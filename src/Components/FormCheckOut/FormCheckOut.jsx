@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { addDoc, collection, updateDoc, doc } from "firebase/firestore";
 import { db } from "../../FirebaseConfig";
+import Swal from "sweetalert2"
 
 const FormCheckOut = ({ cart, getPrecioTotal, setOrderId, limpiarCart }) => {
   const [userData, setUserData] = useState({
@@ -12,6 +13,26 @@ const FormCheckOut = ({ cart, getPrecioTotal, setOrderId, limpiarCart }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    if (userData.name.length < 3) {
+      return (
+        Swal.fire("Nombre no valido")
+      )
+
+
+    } 
+
+    const emailIncluye = userData.email.includes("@") && userData.email.includes(".")
+    if(! emailIncluye) {
+
+      return(
+        Swal.fire("Email no valido")
+      )
+    
+    
+     
+    }
+    
+
     let total = getPrecioTotal();
 
     let order = {
@@ -19,6 +40,14 @@ const FormCheckOut = ({ cart, getPrecioTotal, setOrderId, limpiarCart }) => {
       items: cart,
       total,
     };
+
+    Swal.fire({
+      title: 'Gracias por su compra',
+      text: 'HAVE A GREAT TOMORROW',
+      icon: 'success',
+      confirmButtonText: 'CONTINUAR'
+    })
+
 
     const ordersCollection = collection(db, "orders");
     addDoc(ordersCollection, order)
@@ -33,9 +62,11 @@ const FormCheckOut = ({ cart, getPrecioTotal, setOrderId, limpiarCart }) => {
       updateDoc(refDoc, { stock: product.stock - product.cantidad });
     });
   };
-
+ 
   return (
     <div
+
+    
       style={{
         display: "flex",
         flexDirection: "column",
@@ -43,15 +74,17 @@ const FormCheckOut = ({ cart, getPrecioTotal, setOrderId, limpiarCart }) => {
         minHeight: "60vh",
         justifyContent: "center",
       }}
-    >
+        >
       <h1 style={{ paddingBottom: "0.5rem" }}>Check Out</h1>
       <form
+      
         onSubmit={handleSubmit}
         style={{
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
         }}
+        
       >
         <input
           type="text"
@@ -75,16 +108,19 @@ const FormCheckOut = ({ cart, getPrecioTotal, setOrderId, limpiarCart }) => {
           style={{ fontSize: "larger", padding: "0.5rem" }}
         />
         <button
+        
           className="favorite styled"
           type="submit"
           style={{ color: "white", textShadow: "none", margin: "0.3rem" }}
         >
           Finalizar la Compra
         </button>
+        
       </form>
-
       
     </div>
+    
+    
   );
 };
 
