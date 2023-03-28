@@ -21,8 +21,8 @@ const Cart = () => {
       icon: "warning",
       showCancelButton: true,
       showDenyButton: true,
-      confirmButtonColor: "#11CBCF",
-      cancelButtonColor: "#d33",
+      confirmButtonColor: "#0DC70E",
+      cancelButtonColor: "grey",
       confirmButtonText: "SI, vaciarlo!",
       showDenyButtonText: `No vaciar`,
     }).then((result) => {
