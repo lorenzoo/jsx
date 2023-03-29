@@ -22,6 +22,9 @@ const FormCheckOut = ({ cart, getPrecioTotal, setOrderId, limpiarCart }) => {
     if (!emailIncluye) {
       return Swal.fire("Email no valido");
     }
+    if (userData.phone.length < 8) {
+      return Swal.fire("Telefono no valido");
+    }
 
     let total = getPrecioTotal();
 
